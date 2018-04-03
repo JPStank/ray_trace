@@ -23,14 +23,19 @@ vec3 color(const ray& r, hitable* world, int depth)
 	{
 		ray scattered;
 		vec3 attenuation;
-		vec3 emitted = rec.mat_ptr->emitted(rec.u, rec.v, rec.p);
+		//vec3 emitted = rec.mat_ptr->emitted(rec.u, rec.v, rec.p);
 		if (depth < 50 && rec.mat_ptr->scatter(r, rec, attenuation, scattered))
-			return emitted + attenuation*color(scattered, world, depth + 1);
+			return /*emitted + */attenuation*color(scattered, world, depth + 1);
 		else
-			return emitted;
+			return /*emitted;//*/ vec3(0, 0, 0);
 	}
 	else
-		return vec3(0, 0, 0);
+	{
+		vec3 unit_direction = unit_vector(r.direction());
+		float t = 0.5f * (unit_direction.y() + 1.0f);
+		return ((1.0f - t) * vec3(1, 1, 1)) + (t*vec3(0.5f, 0.7f, 1.0f));
+		//return vec3(0, 0, 0);
+	}
 }
 
 void random_scene(hitable** ret)

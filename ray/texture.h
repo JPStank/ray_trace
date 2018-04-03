@@ -62,8 +62,8 @@ public:
 	image_texture(unsigned char* pixels, int A, int B) : data(pixels), nx(A), ny(B) {}
 	virtual vec3 value(float u, float v, const vec3& p) const
 	{
-		int i = u*nx;
-		int j = (1.0f - v)*ny - 0.001f;
+		int i = int(u*float(nx));
+		int j = int((1.0f - v)*float(ny) - 0.001f);
 		if (i < 0) i = 0;
 		if (j < 0) j = 0;
 		if (i > nx - 1) i = nx - 1;
