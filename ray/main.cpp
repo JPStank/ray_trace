@@ -6,6 +6,7 @@
 #include "material.h"
 #include "bvh.h"
 #include "aarect.h"
+#include "box.h"
 
 #include <ctime>
 
@@ -23,18 +24,18 @@ vec3 color(const ray& r, hitable* world, int depth)
 	{
 		ray scattered;
 		vec3 attenuation;
-		//vec3 emitted = rec.mat_ptr->emitted(rec.u, rec.v, rec.p);
+		vec3 emitted = rec.mat_ptr->emitted(rec.u, rec.v, rec.p);
 		if (depth < 50 && rec.mat_ptr->scatter(r, rec, attenuation, scattered))
-			return /*emitted + */attenuation*color(scattered, world, depth + 1);
+			return emitted + attenuation*color(scattered, world, depth + 1);
 		else
-			return /*emitted;//*/ vec3(0, 0, 0);
+			return emitted;// vec3(0, 0, 0);
 	}
 	else
 	{
-		vec3 unit_direction = unit_vector(r.direction());
-		float t = 0.5f * (unit_direction.y() + 1.0f);
-		return ((1.0f - t) * vec3(1, 1, 1)) + (t*vec3(0.5f, 0.7f, 1.0f));
-		//return vec3(0, 0, 0);
+		//vec3 unit_direction = unit_vector(r.direction());
+		//float t = 0.5f * (unit_direction.y() + 1.0f);
+		//return ((1.0f - t) * vec3(1, 1, 1)) + (t*vec3(0.5f, 0.7f, 1.0f));
+		return vec3(0, 0, 0);
 	}
 }
 
@@ -122,18 +123,23 @@ void simple_light(hitable** ret)
 
 void cornell_box(hitable** ret)
 {
-	hitable** list = new hitable*[6];
+	hitable** list = new hitable*[8];
 	int i = 0;
 	material* red = new lambertian(new constant_texture(vec3(0.65f, 0.05f, 0.05f)));
 	material* white = new lambertian(new constant_texture(vec3(0.73f, 0.73f, 0.73f)));
 	material* green = new lambertian(new constant_texture(vec3(0.12f, 0.45f, 0.15f)));
 	material* light = new diffuse_light(new constant_texture(vec3(15, 15, 15)));
+	//int nx, ny, nn;
+	//unsigned char* tex_data = stbi_load("gun.jpg", &nx, &ny, &nn, 0);
+	//material* tex = new lambertian(new image_texture(tex_data, nx, ny));
 	list[i++] = new flip_normals(new yz_rect(0, 555, 0, 555, 555, green));
 	list[i++] = new yz_rect(0, 555, 0, 555, 0, red);
 	list[i++] = new xz_rect(213, 343, 227, 332, 554, light);
 	list[i++] = new flip_normals(new xz_rect(0, 555, 0, 555, 555, white));
 	list[i++] = new xz_rect(0, 555, 0, 555, 0, white);
 	list[i++] = new flip_normals(new xy_rect(0, 555, 0, 555, 555, white));
+	list[i++] = new box(vec3(130, 0, 65), vec3(295, 165, 230), white);
+	list[i++] = new box(vec3(265, 0, 295), vec3(430, 330, 460), white);
 
 	*ret = new hitable_list(list, i);
 }
@@ -144,11 +150,11 @@ int main()
 #ifdef CUSTOM_RAND
 	init_rand_table();
 #endif
-	//int nx = 1280;
-	//int ny = 720;
-	int ns = 100;
-	int nx = 300;
-	int ny = 300;
+	int nx = 1280;
+	int ny = 720;
+	int ns = 300;
+	//int nx = 300;
+	//int ny = 300;
 	std::cout << "P3\n" << nx << " " << ny << "\n255\n";
 
 	//const int count = 5;
