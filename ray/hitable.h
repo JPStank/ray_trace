@@ -5,7 +5,7 @@
 
 class material;
 
-void get_sphere_uv(const vec3& p, float& u, float& v) 
+void get_sphere_uv(const vec3& p, float& u, float& v)
 {
 	float phi = atan2(p.z(), p.x());
 	float theta = asin(p.y());
@@ -25,6 +25,7 @@ struct hit_record
 class hitable
 {
 public:
+    virtual ~hitable() {}
 	virtual bool hit(const ray& r, float t_min, float t_max, hit_record& rec) const = 0;
 	virtual bool bounding_box(float t0, float t1, aabb& box) const = 0;
 };
@@ -140,7 +141,7 @@ bool rotate_y::hit(const ray& r, float t_min, float t_max, hit_record& rec) cons
 {
 	vec3 origin = r.origin();
 	vec3 direction = r.direction();
-	
+
 	origin[0] = cos_theta*r.origin()[0] - sin_theta*r.origin()[2];
 	origin[2] = sin_theta*r.origin()[0] + cos_theta*r.origin()[2];
 	direction[0] = cos_theta*r.direction()[0] - sin_theta*r.direction()[2];

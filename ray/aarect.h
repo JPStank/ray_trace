@@ -16,8 +16,8 @@ public:
 		box = aabb(vec3(x0, y0, k - 0.0001f), vec3(x1, y1, k + 0.0001f));
 		return true;
 	}
-	material* mp;
 	float x0, x1, y0 , y1, k;
+	material* mp;
 };
 
 class xz_rect : public hitable
@@ -33,8 +33,8 @@ public:
 		return true;
 	}
 
-	material* mp;
 	float x0, x1, z0, z1, k;
+	material* mp;
 };
 
 class yz_rect : public hitable
@@ -50,8 +50,8 @@ public:
 		return true;
 	}
 
-	material* mp;
 	float y0, y1, z0, z1, k;
+	material* mp;
 };
 
 bool xy_rect::hit(const ray& r, float t0, float t1, hit_record& rec) const

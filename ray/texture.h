@@ -36,8 +36,8 @@ public:
 			return even->value(u, v, p);
 	}
 
-	texture* odd;
 	texture* even;
+	texture* odd;
 };
 
 

@@ -5,8 +5,9 @@
 #include <stdlib.h>
 #include <iostream>
 #include <random>
+#include <float.h>
 
-#define M_PI 3.1415926f
+//#define M_PI 3.1415926f
 
 //#define CUSTOM_RAND
 #ifdef CUSTOM_RAND

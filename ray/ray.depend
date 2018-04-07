@@ -1,0 +1,81 @@
+# depslib dependency file v1.0
+1523079811 source:/home/josh/code/ray/ray_trace/ray/main.cpp
+	<iostream>
+	"sphere.h"
+	"hitable_list.h"
+	"float.h"
+	"camera.h"
+	"material.h"
+	"bvh.h"
+	"aarect.h"
+	"box.h"
+	"constant_medium.h"
+	<ctime>
+	"stb_image.h"
+
+1523054711 /home/josh/code/ray/ray_trace/ray/sphere.h
+	"hitable.h"
+
+1523078196 /home/josh/code/ray/ray_trace/ray/hitable.h
+	"aabb.h"
+
+1523054711 /home/josh/code/ray/ray_trace/ray/aabb.h
+	"ray.h"
+
+1523054711 /home/josh/code/ray/ray_trace/ray/ray.h
+	"vec3.h"
+
+1523078228 /home/josh/code/ray/ray_trace/ray/vec3.h
+	<math.h>
+	<stdlib.h>
+	<iostream>
+	<random>
+	<float.h>
+
+1523054711 /home/josh/code/ray/ray_trace/ray/hitable_list.h
+	"hitable.h"
+
+1523054711 /home/josh/code/ray/ray_trace/ray/camera.h
+	"ray.h"
+
+1523075014 /home/josh/code/ray/ray_trace/ray/material.h
+	"vec3.h"
+	"texture.h"
+
+1523078217 /home/josh/code/ray/ray_trace/ray/texture.h
+	"perlin.h"
+
+1523054711 /home/josh/code/ray/ray_trace/ray/perlin.h
+	"vec3.h"
+
+1523054711 /home/josh/code/ray/ray_trace/ray/bvh.h
+	"hitable.h"
+	"aabb.h"
+
+1523078167 /home/josh/code/ray/ray_trace/ray/aarect.h
+	"hitable.h"
+	"ray.h"
+
+1523054711 /home/josh/code/ray/ray_trace/ray/box.h
+	"aarect.h"
+
+1523054711 /home/josh/code/ray/ray_trace/ray/stb_image.h
+	"stb_image.h"
+	<stdio.h>
+	<stdarg.h>
+	<stddef.h>
+	<stdlib.h>
+	<string.h>
+	<limits.h>
+	<math.h>
+	<stdio.h>
+	<assert.h>
+	<stdint.h>
+	<emmintrin.h>
+	<intrin.h>
+	<arm_neon.h>
+
+1523078067 /home/josh/code/ray/ray_trace/ray/constant_medium.h
+	"hitable.h"
+	"material.h"
+
